@@ -1,42 +1,28 @@
 package q33;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class q33 {
-	
-	class Let{
-		private char letter;
-		private int quant;
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite uma palavra: ");
+        String palavra = scanner.nextLine();
+        int[] letras = new int[26];
 
-		public Let(char c) {
-			this.letter = c;
-		}
-		public char getLetter() {
-			return this.letter;
-		}
-		public void setLetter(char letter) {
-			this.letter = letter;
-		}
-		public int getQuant() {
-			return this.quant;
-		}
-		public void setQuant(int quant) {
-			this.quant = quant;
-		}
-}
-	
-	public static void main(String args[]) {
-		String word = "casa";
-		final char[] wordChar = word.toCharArray();
-		List<Let> l = new ArrayList<Let>();
-		if(wordChar.length > 1) {
-			for(int i=1;i<wordChar.length;i++) {
-				for(int o=0;o<l.size();o++) {
-					if(wordChar[i] != l.get(o).getLetter()) {
-						l.add(new Let(wordChar[i]));
-					}
-				}
-			}
-		}
-	}
+        for (int i = 0; i < palavra.length(); i++) {
+            char letra = palavra.charAt(i);
+            if (letra >= 'a' && letra <= 'z') {
+                letras[letra - 'a']++;
+            } else if (letra >= 'A' && letra <= 'Z') {
+                letras[letra - 'A']++;
+            }
+        }
+
+        for (int i = 0; i < letras.length; i++) {
+            if (letras[i] > 0) {
+                char letra = (char) ('a' + i);
+                System.out.println(letra + " = " + letras[i]);
+            }
+        }
+		scanner.close();
+    }
 }
